@@ -2,7 +2,7 @@ import { useOutletContext } from 'react-router-dom';
 import Navbar from './Navbar';
 
 const Home = () => {
-  const {loginData} = useOutletContext();
+  const {loginData, setLoginData} = useOutletContext();
 
   const heloUser = () =>{
     console.log(loginData.email)
@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <>
       <header>
-        <Navbar />
+        <Navbar setLoginData={setLoginData} loginData={loginData} />
       </header>
       <main>
         <section className='flex flex-col items-center justify-between'>

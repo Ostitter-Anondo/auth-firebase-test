@@ -9,6 +9,8 @@ import {
 import App from './App';
 import Home from './Components/Home';
 import Login from './Components/Login';
+import LoginForm from './Components/LoginPage/LoginForm';
+import RegForm from './Components/LoginPage/RegForm';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,16 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+        children: [
+          {
+            path: "/login",
+            element: <LoginForm />
+          },
+          {
+            path: "/login/register",
+            element: <RegForm />
+          },
+        ],
       },
     ]
   },

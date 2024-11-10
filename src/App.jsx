@@ -4,10 +4,11 @@ import { useState } from 'react';
 
 function App() {
   const [loginData, setLoginData] = useState(null)
+  const [regData, setRegData] = useState(null)
 
   return (
     <>
-      <Outlet context={{loginData: loginData, setLoginData: setLoginData}} />
+      <Outlet context={{loginData: loginData, setLoginData: setLoginData, regData: regData, setRegData:setRegData}} />
     </>
   )
 }

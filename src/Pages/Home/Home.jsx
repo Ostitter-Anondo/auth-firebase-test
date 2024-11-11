@@ -1,11 +1,13 @@
-import { useOutletContext } from 'react-router-dom';
-import Navbar from './Navbar';
+import Navbar from '../Components/Navbar';
+import { useContext } from 'react';
+import AuthContext from '../../AuthContext.jsx';
+import { Outlet } from 'react-router-dom';
 
 const Home = () => {
-  const {loginData, setLoginData} = useOutletContext();
+  const {loginData, setLoginData, mojarkotha} = useContext(AuthContext);
 
   const heloUser = () =>{
-    console.log(loginData.email)
+    console.log(mojarkotha)
   }
 
   return (
@@ -31,6 +33,9 @@ const Home = () => {
                 </>
             }
           </div>
+        </section>
+        <section>
+          <Outlet />
         </section>
       </main>
     </>

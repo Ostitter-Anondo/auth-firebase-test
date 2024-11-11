@@ -1,6 +1,6 @@
 import { signOut } from "firebase/auth";
 import { Link, NavLink } from "react-router-dom";
-import auth from "../firebase/firebase.init";
+import auth from "../../firebase/firebase.init";
 import PropTypes from "prop-types";
 
 const Navbar = ({ setLoginData, loginData }) => {

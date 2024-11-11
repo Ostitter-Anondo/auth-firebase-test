@@ -4,18 +4,20 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import Navbar from "./Navbar";
-import auth from "../firebase/firebase.init";
-import { Outlet, useOutletContext } from "react-router-dom";
+import Navbar from "../Components/Navbar";
+import auth from "../../firebase/firebase.init";
+import { Outlet } from "react-router-dom";
 
 import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+import { useContext } from "react";
+import AuthContext from "../../AuthContext";
 
 const Login = () => {
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
 
-  const { loginData, setLoginData, regData, setRegData } = useOutletContext();
+  const { loginData, setLoginData } = useContext(AuthContext);
 
   const handleGoogleSignin = () => {
     signInWithPopup(auth, googleProvider)
@@ -80,7 +82,7 @@ const Login = () => {
           <hr className="w-4/5 lg:w-2/5" />
         </div>
         <section className="lg:w-5/12 mx-auto my-12">
-          <Outlet context={{loginData: loginData, setLoginData: setLoginData, regData: regData, setRegData:setRegData}} />
+          <Outlet />
         </section>
       </main>
     </>

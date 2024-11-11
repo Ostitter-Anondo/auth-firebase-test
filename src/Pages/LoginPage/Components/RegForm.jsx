@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { IoMailOutline } from "react-icons/io5";
 import { IoKeyOutline } from "react-icons/io5";
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import auth from "../../firebase/firebase.init";
+import auth from "../../../firebase/firebase.init";
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 

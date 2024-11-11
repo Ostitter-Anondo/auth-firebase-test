@@ -1,12 +1,13 @@
 import { sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IoKeyOutline, IoMailOutline } from "react-icons/io5";
-import { Link, useOutletContext } from "react-router-dom";
-import auth from "../../firebase/firebase.init";
+import { Link } from "react-router-dom";
+import auth from "../../../firebase/firebase.init";
+import AuthContext from "../../../AuthContext";
 
 const LoginForm = () => {
-  const { loginData, setLoginData } = useOutletContext();
+  const { loginData, setLoginData } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
   const [successMsg, setSuccessMsg] = useState(null);

@@ -1,36 +1,26 @@
-import { signOut } from "firebase/auth";
 import { Link, NavLink } from "react-router-dom";
-import auth from "../../firebase/firebase.init";
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import AuthContext from "../../AuthContext";
 
-const Navbar = ({ setLoginData, loginData }) => {
-  const handleSignOut = () => {
-    signOut(auth)
-      .then(() => {
-        setLoginData(null);
-        console.log("Sing Out success");
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoginData(null);
-      });
-  };
-
+const Navbar = () => {
+  const { loginData } = useContext(AuthContext);
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <Link to="/" className="btn btn-ghost text-xl">GenjiBajar</Link>
+        <Link to="/" className="btn btn-ghost text-xl">
+          GenjiBajar
+        </Link>
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal gap-3 px-1">
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
+
           <li>
             {loginData ? (
-              <button onClick={handleSignOut} className="">
-                Sign Out
-              </button>
+              <NavLink to="/dashboard">Dashboard</NavLink>
             ) : (
               <NavLink to="/login">Login</NavLink>
             )}

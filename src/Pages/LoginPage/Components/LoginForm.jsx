@@ -1,19 +1,20 @@
-import { sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+import { sendPasswordResetEmail } from "firebase/auth";
 import { useContext, useRef, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IoKeyOutline, IoMailOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase/firebase.init";
 import AuthContext from "../../../AuthContext";
 
 const LoginForm = () => {
-  const { loginData, setLoginData } = useContext(AuthContext);
+  const { loginData, setLoginData, signInMailPass } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
   const [successMsg, setSuccessMsg] = useState(null);
 
   const emailRef = useRef();
-
+  const navigate = useNavigate();
+  
   const handleLogin = (event) => {
     event.preventDefault();
     setErrorMsg(null);
@@ -21,7 +22,7 @@ const LoginForm = () => {
     const emailVal = event.target.email.value;
     const passwordVal = event.target.password.value;
 
-    signInWithEmailAndPassword(auth, emailVal, passwordVal)
+    signInMailPass(emailVal, passwordVal)
       .then((result) => {
         console.log(result.user);
         setLoginData(result.user);
@@ -30,6 +31,7 @@ const LoginForm = () => {
         } else {
           setSuccessMsg("log in successful");
         }
+        navigate('/')
       })
       .catch((err) => {
         setErrorMsg(err.message);

@@ -8,6 +8,10 @@ import Login from "./Pages/LoginPage/Login";
 import LoginForm from "./Pages/LoginPage/Components/LoginForm";
 import RegForm from "./Pages/LoginPage/Components/RegForm";
 import AuthProvider from "./AuthProvider";
+import Dashboard from "./Pages/Dashboard/Dashboard";
+import PrivateRoute from "./PrivateRoute";
+import Profile from "./Pages/Dashboard/Components/Profile";
+import BlogManagement from "./Pages/Dashboard/Components/BlogManagement";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +31,20 @@ const router = createBrowserRouter([
         element: <RegForm />,
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <PrivateRoute><Dashboard /></PrivateRoute>,
+    children: [
+      {
+        path: "/dashboard",
+        element: <PrivateRoute><Profile /></PrivateRoute>
+      },
+      {
+        path: "/dashboard/blogcontrol",
+        element: <PrivateRoute><BlogManagement /></PrivateRoute>
+      },
+    ]
   },
 ]);
 

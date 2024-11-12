@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { IoPersonOutline } from "react-icons/io5";
 import { IoCameraOutline } from "react-icons/io5";
-import { IoCallOutline } from "react-icons/io5";
 import AuthContext from "../../../AuthContext";
 import { updateProfile } from "firebase/auth";
 import auth from "../../../firebase/firebase.init";
